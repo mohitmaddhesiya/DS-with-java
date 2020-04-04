@@ -65,17 +65,31 @@ public class DepthOfTree {
         }
         return max;
     }
-    public void recursive1(BinaryTree.Node currentNode, int num, int heigth, int sum){
+    public void depthSumRecusrsive(BinaryTree.Node currentNode, int num, int sum){
      if(currentNode==null){
          return;
      }
      if(currentNode.data==num){
-           System.out.println(" Heigth with data==num  " + heigth);
-           System.out.println(" sum of node   " + sum);
+           System.out.println("       sum of node   " + sum);
+     }else{
+        depthSumRecusrsive(currentNode.left,num, sum+currentNode.data);
+        depthSumRecusrsive(currentNode.rigth, num, sum+currentNode.data);
+     }  
+    }
+    public int recursive2(BinaryTree.Node currentNode, int num, int heigth){
+     if(currentNode==null){
+      return 0; 
      }
-     //System.out.println(" currentNode.data "  + currentNode.data + " and heigth "+ heigth);
-     recursive1(currentNode.left,num,heigth+1, sum+currentNode.data);
-     recursive1(currentNode.rigth, num,heigth+1, sum+currentNode.data);
-    // return;
+     if(currentNode.data==num){
+         return heigth;
+     }else{
+        int h = recursive2(currentNode.left,num,heigth+1);
+        int h2 = recursive2(currentNode.rigth, num,heigth+1);
+        if(heigth<h){
+            return h;
+        }else{
+            return heigth;
+        }
+     }
     }
 }

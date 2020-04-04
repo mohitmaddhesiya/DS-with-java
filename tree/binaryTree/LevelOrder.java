@@ -4,7 +4,6 @@ import java.util.Queue;
 
 public class LevelOrder {
     public void Itrator(BinaryTree.Node currentNode) {
-        System.out.println(" ================================== ");
         if (currentNode == null) {
             System.out.println(" No Binary Tree found to display ");
             return;
@@ -21,7 +20,5 @@ public class LevelOrder {
                 q.add(ptr.rigth);
             }
         }
-        System.out.println();
-        System.out.println(" ====================================== ");
     }
 }
