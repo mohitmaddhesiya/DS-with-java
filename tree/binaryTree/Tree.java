@@ -2,7 +2,7 @@ public class Tree {
   public static void main(String args[]) {
     BinaryTree bt = new BinaryTree();
 
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 20; i++) {
       bt.insert(10 * i);
     }
 
@@ -14,6 +14,7 @@ public class Tree {
     int treeSize = ts.SizeWithLevelOrder(bt.root);
     System.out.println("  with level order " + treeSize);
     System.out.println("with simple recursive " + ts.sizeWithRecursive(bt.root));
+    System.out.print(" with recusrsive 2 approviach  " + ts.sizeWithRecursive2(bt.root));
     System.out.println(" ");
 
     System.out.println(" ");
@@ -72,19 +73,39 @@ public class Tree {
 
     System.out.println(" ===== Tree 1 ===== ");
     BinaryTree bt1 = new BinaryTree();
-
-    for (int i = 1; i <= 10; i++) {
-      bt1.insert(10 * i);
-    }
-    lo.Itrator(bt1.root);
+    bt1.insert(10);
+    bt1.insertRandom(bt1.root, 20 ,"left");
+    bt1.insertRandom(bt1.root, 30, "rigth");
+    bt1.insertRandom(bt1.root.left, 40, "rigth");
+    bt1.insertRandom(bt1.root.left.rigth, 50, "left");
+    po.recursive(bt1.root);
     System.out.println(" ");
 
     System.out.println(" ===== Tree 2 ===== ");
     BinaryTree bt2 = new BinaryTree();
 
-    for (int i = 1; i <= 10; i++) {
-      bt2.insert(100 * i);
+    bt2.insert(10);
+    bt2.insertRandom(bt2.root, 20 ,"left");
+    bt2.insertRandom(bt2.root, 30, "rigth");
+    bt2.insertRandom(bt2.root.rigth, 40, "rigth");
+    bt2.insertRandom(bt2.root.rigth.rigth, 50, "left");
+    po.recursive(bt2.root);
+    System.out.println(" ");
+    System.out.println(" ===== Identical Tee Check  ===== ");
+    Identical i=new Identical();
+    System.out.println(" ---  Itrative order -----");
+    if(i.levelOrder(bt1.root, bt2.root)){
+      System.out.println("Given Tree are indentical");
+    }else{
+      System.out.println("Given Tree are indentical");
     }
-    lo.Itrator(bt2.root);
+    System.out.println(" ---  recrsive order -----");
+    if(i.recursive(bt1.root, bt2.root)){
+      System.out.println("Given Tree are indentical");
+    }else{
+      System.out.println("Given Tree are not identical");
+    }
+    System.out.println(" ");
+
   }
 }

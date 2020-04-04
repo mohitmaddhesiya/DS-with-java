@@ -29,13 +29,11 @@ public class SizeOfBinaryTree {
         return sizeWithRecursive(current.left) + 1 + sizeWithRecursive(current.rigth);
 
     }
-   /* public int sizeWithPreOrderRecusive(BinaryTree.Node currentNode){
+    public int sizeWithRecursive2(BinaryTree.Node currentNode){
        if(currentNode==null)
-         return 1;
-        
-    }*/
-    //postoreder with recusion
-    //inoder with recusion
-
-
+         return 0;
+        int l=sizeWithRecursive2(currentNode.left);
+        int r=sizeWithRecursive2(currentNode.rigth);
+        return l+r+1;
+    }
 }

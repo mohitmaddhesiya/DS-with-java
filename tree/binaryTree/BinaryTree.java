@@ -38,13 +38,11 @@ public class BinaryTree {
             }
         }
     }
-    // postorder recursive
-    public void postOrderRecusive(Node currentNode){
-        if(currentNode ==null){
-          return;
-        }
-        postOrderRecusive(currentNode.left);
-        postOrderRecusive(currentNode.rigth);
-        System.out.print(" \t " +  currentNode.data);
+    public void insertRandom(Node currentNode, int num , String child){
+        Node newNode = new Node(num);
+        if(child=="left")
+           currentNode.left=newNode;
+         else
+           currentNode.rigth=newNode;
     }
 }
