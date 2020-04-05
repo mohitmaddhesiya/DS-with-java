@@ -57,12 +57,22 @@ public class Tree {
     System.out.println("       Depth of node " + num + " is " + dt.tryWithOtherLogic(bt.root, num) + " (Another logic with two stack )");
     System.out.println("       Depth of node " + num + " is "+ dt.recursive2(bt.root, num, 0) + " (recursive approach with return value)");
     dt.depthSumRecusrsive(bt.root, num, 0);
+    System.out.println("       Print path of depath Node with recursive  ");
+    dt.recursivePrintDepathPath(bt.root, num);
+    System.out.println("       Print path of depath Node with itrative map  ");
+    dt.depthPathItrativeWithMap(bt.root, num);
+    System.out.println("       Print path of depath Node with itrative dequeue  ");
+    dt.depthPathItrativeWithDequeue(bt.root, num);
     System.out.println(" ");
   } 
   static void rootToLeaf(BinaryTree bt){
     System.out.println("        ===== Root to leaf all path  ===== ");
     RootToLeaf rl=new RootToLeaf();
     rl.printAllRootToLeafPath(bt.root);
+    System.out.println("            ***  Through Map  *** ");
+    rl.rootToLeafMap(bt.root);
+    System.out.println("            ***  Through recursive  *** ");
+    rl.recursivePrint(bt.root);
     System.out.println(" ");
   }
   static void sprialOrderPrint(BinaryTree bt){
@@ -113,7 +123,7 @@ public class Tree {
     postOrder(bt1);
     heigth(bt1);
     size(bt1);
-    depth(bt1, 100);
+    depth(bt1, 50);
     rootToLeaf(bt1);
     sprialOrderPrint(bt);
    
@@ -127,7 +137,7 @@ public class Tree {
     postOrder(bt2);
     heigth(bt2);
     size(bt2);
-    depth(bt, 40);
+    depth(bt, 100);
     sprialOrderPrint(bt2);
     rootToLeaf(bt2);
     System.out.println(" ");
