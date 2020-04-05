@@ -65,7 +65,7 @@ public class Tree {
     dt.depthPathItrativeWithDequeue(bt.root, num);
     System.out.println(" ");
   } 
-  static void rootToLeaf(BinaryTree bt){
+  static void rootToLeaf(BinaryTree bt, int sum){
     System.out.println("        ===== Root to leaf all path  ===== ");
     RootToLeaf rl=new RootToLeaf();
     rl.printAllRootToLeafPath(bt.root);
@@ -73,6 +73,15 @@ public class Tree {
     rl.rootToLeafMap(bt.root);
     System.out.println("            ***  Through recursive  *** ");
     rl.recursivePrint(bt.root);
+    System.out.println("            ***  Given Sum  " + sum + " path with hashmap *** ");
+    rl.rootToLeafSum(bt.root, sum);
+    System.out.println("            ***  Given Sum  " + sum + " path  with deque *** ");
+    rl.rootToLeafSumWithDeque(bt.root, sum);
+    System.out.println("            ***  Given Sum  " + sum + " path  with Recursive *** ");
+    rl.rootToleafRecursiveSum(bt.root, sum);
+    System.out.println("            ***  Given Sum  " + sum + " path  with Recursive *** ");
+     System.out.print("\t path exist =" + rl.rootToLeafSumCheck(bt.root, sum));
+
     System.out.println(" ");
   }
   static void sprialOrderPrint(BinaryTree bt){
@@ -110,7 +119,7 @@ public class Tree {
     heigth(bt);
     size(bt);
     depth(bt, 100);
-    rootToLeaf(bt);
+    rootToLeaf(bt, 180);
     sprialOrderPrint(bt);
     
     System.out.println(" ");
@@ -124,7 +133,7 @@ public class Tree {
     heigth(bt1);
     size(bt1);
     depth(bt1, 50);
-    rootToLeaf(bt1);
+    rootToLeaf(bt1, 40);
     sprialOrderPrint(bt);
    
     System.out.println(" ");
@@ -139,7 +148,7 @@ public class Tree {
     size(bt2);
     depth(bt, 100);
     sprialOrderPrint(bt2);
-    rootToLeaf(bt2);
+    rootToLeaf(bt2, 370);
     System.out.println(" ");
 
     System.out.println(" ===== Identical Tree ===== ");
