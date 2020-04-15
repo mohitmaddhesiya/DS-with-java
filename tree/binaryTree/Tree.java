@@ -84,6 +84,17 @@ public class Tree {
 
     System.out.println(" ");
   }
+  static void countLeafNode(BinaryTree bt){
+    System.out.println("       ===== Count number of leaf ===== ");
+    CountLeafNode cl = new CountLeafNode();
+    System.out.println("            ***  count through level order *** ");
+    cl.levelOrderCountLeaf(bt.root);
+    System.out.println("            ***  count through itrative order *** ");
+    cl.itrativeOrderWithStack(bt.root);
+    System.out.println("            ***  count through recursive order *** ");
+    cl.recursiveCheck(bt.root);
+    System.out.println(" ");
+  }
   static void sprialOrderPrint(BinaryTree bt){
     System.out.println("       ===== Display of Other view ===== ");
     Display ds = new Display();
@@ -121,6 +132,7 @@ public class Tree {
     depth(bt, 100);
     rootToLeaf(bt, 180);
     sprialOrderPrint(bt);
+    countLeafNode(bt);
     
     System.out.println(" ");
 
@@ -135,7 +147,7 @@ public class Tree {
     depth(bt1, 50);
     rootToLeaf(bt1, 40);
     sprialOrderPrint(bt);
-   
+    countLeafNode(bt1);
     System.out.println(" ");
   
     System.out.println(" ===== Binary Tree 2 ===== ");
@@ -149,6 +161,7 @@ public class Tree {
     depth(bt, 100);
     sprialOrderPrint(bt2);
     rootToLeaf(bt2, 370);
+    countLeafNode(bt2);
     System.out.println(" ");
 
     System.out.println(" ===== Identical Tree ===== ");
