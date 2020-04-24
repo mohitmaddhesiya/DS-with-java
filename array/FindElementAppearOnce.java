@@ -95,8 +95,8 @@ public class FindElementAppearOnce {
 
     public static void main(String args[]) {
         int arr[] = { 12, 1, 12, 3, 12, 1, 1, 2, 3, 3, 2, 2, 10 };
-        // System.out.println(" broute force approach " + bruteForce(arr));
-        // System.out.println(" HashMap approach " + hashmap(arr));
+        System.out.println(" broute force approach " + bruteForce(arr));
+        System.out.println(" HashMap approach " + hashmap(arr));
         System.out.println(" Sorting Approach " + sortingApproach(arr));
     }
 }
