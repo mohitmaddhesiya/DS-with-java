@@ -117,11 +117,18 @@ public class Tree {
     }
     System.out.println(" ");
   }
+  static void displayOtherWay(BinaryTree bt){
+    // dispplay alternat way left to right , and right to left
+    EveryTwoLevelsChangeDirection e= new EveryTwoLevelsChangeDirection();
+    System.out.println("       ===== Level order traversal with direction change after every two levels ===== ");
+    e.modifiedLevelOrder(bt.root);
+
+  }
   public static void main(String args[]) {
 
     System.out.println(" ===== Binary Tree  ===== ");
     BinaryTree bt = new BinaryTree();
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 20; i++) {
       bt.insert(10 * i);
     }
     levelorder(bt);
@@ -133,6 +140,7 @@ public class Tree {
     rootToLeaf(bt, 180);
     sprialOrderPrint(bt);
     countLeafNode(bt);
+    displayOtherWay(bt);
     
     System.out.println(" ");
 
