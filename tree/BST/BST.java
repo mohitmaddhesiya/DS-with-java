@@ -19,6 +19,8 @@ public class BST {
         bst.insertItrativeWay(48);
         bst.insertItrativeWay(44);
         bst.insertItrativeWay(43);
+        bst.insertItrativeWay(8);
+        bst.insertItrativeWay(9);
     }
 
     public static void inorder(InsertInBst.Node root, int num) {
@@ -44,15 +46,38 @@ public class BST {
         }
         System.out.println(" ");
     }
+    public static void inordepreorderr(InsertInBst.Node root, int num) {
+        System.out.println(" ");
+        System.out.println(" '''''''''' recursive preorder approach display ''''''''''' ");
+        Preorder pre = new Preorder();
+        pre.recursiveDisplay(root);
+        System.out.println(" ");
+        System.out.println(" ---------  Print sucessor node with itrative way of given node ------------   ");
+        InsertInBst.Node sucessorResult = pre.sucessorItrativeWay(root, num);
+        if (sucessorResult == null) {
+            System.out.println("         No sucessor found of node " + num);
+        } else {
+            System.out.println("         " + sucessorResult.data + " sucessor found of node " + num);
+        }
+        System.out.println(" ---------  Print predecessor node  with itrative way of given node ------------   ");
+        InsertInBst.Node predecessorResult = pre.predecessorItrativeWay(root, num);
+        if (predecessorResult == null) {
+            System.out.println("         No predecessor found of node " + num);
+        } else {
+            System.out.println("         " + predecessorResult.data + " predecessor found of node " + num);
+        }
+        System.out.println(" ");
+    }
 
     public static void main(String[] args) {
-        int inorderSucessor = 43;
+        int inorderSucessor =10;
         // create object of insert class
         InsertInBst bst = new InsertInBst();
         // call insert function
         insertInBST(bst);
         System.out.println(" ==========   Display Technique ==================");
         inorder(bst.root, inorderSucessor);
+        inordepreorderr(bst.root, inorderSucessor);
         System.out.println(" ==========   End Display Technique ==============");
     }
 }
