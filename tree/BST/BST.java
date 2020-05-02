@@ -46,7 +46,7 @@ public class BST {
         }
         System.out.println(" ");
     }
-    public static void inordepreorderr(InsertInBst.Node root, int num) {
+    public static void predorder(InsertInBst.Node root, int num) {
         System.out.println(" ");
         System.out.println(" '''''''''' recursive preorder approach display ''''''''''' ");
         Preorder pre = new Preorder();
@@ -68,16 +68,38 @@ public class BST {
         }
         System.out.println(" ");
     }
-
+    public static void postorder(InsertInBst.Node root, int num) {
+        System.out.println(" ");
+        System.out.println(" '''''''''' recursive preorder approach display ''''''''''' ");
+        Postorder post = new Postorder();
+        post.recursiveDisplay(root);
+        System.out.println(" ");
+        System.out.println(" ---------  Print sucessor node with itrative way of given node ------------   ");
+        InsertInBst.Node sucessorResult = post.sucessorItrativeWay(root, num);
+        if (sucessorResult == null) {
+            System.out.println("         No sucessor found of node " + num);
+        } else {
+            System.out.println("         " + sucessorResult.data + " sucessor found of node " + num);
+        }
+        System.out.println(" ---------  Print predecessor node  with itrative way of given node ------------   ");
+        InsertInBst.Node predecessorResult = post.predecessorItrativeWay(root, num);
+        if (predecessorResult == null) {
+            System.out.println("         No predecessor found of node " + num);
+        } else {
+            System.out.println("         " + predecessorResult.data + " predecessor found of node " + num);
+        }
+        System.out.println(" ");
+    }
     public static void main(String[] args) {
-        int inorderSucessor =10;
+        int nodeValue = 9;
         // create object of insert class
         InsertInBst bst = new InsertInBst();
         // call insert function
         insertInBST(bst);
         System.out.println(" ==========   Display Technique ==================");
-        inorder(bst.root, inorderSucessor);
-        inordepreorderr(bst.root, inorderSucessor);
+        inorder(bst.root, nodeValue);
+        predorder(bst.root, nodeValue);
+        postorder(bst.root, nodeValue);
         System.out.println(" ==========   End Display Technique ==============");
     }
 }

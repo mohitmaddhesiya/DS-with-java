@@ -43,7 +43,6 @@ public class Preorder {
     public InsertInBst.Node sucessorItrativeWay(InsertInBst.Node root, int value) {
         InsertInBst.Node sucessorNode = null;
         InsertInBst.Node ptr =null;
-        int minValue=999999;
         InsertInBst.Node temp = root;
         while(temp!=null){
             if(temp.data==value){
