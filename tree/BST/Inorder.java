@@ -33,7 +33,7 @@ public class Inorder {
      * 
      * @param root
      * @param value
-     * @return
+     * @return node object
      */
 
     public static InsertInBst.Node sucessorItrativeWay(InsertInBst.Node root, int value) {
@@ -79,7 +79,7 @@ public class Inorder {
      * 
      * @param root
      * @param value
-     * @return
+     * @return node object
      */
 
     public static InsertInBst.Node predecessorItrativeWay(InsertInBst.Node root, int value) {
@@ -99,6 +99,87 @@ public class Inorder {
         while (root != null) {
             predecessorNode = root;
             root = root.right;
+        }
+        return predecessorNode;
+    }
+    /**
+     * logic for sucessor is same as define in above comments
+     * this approach check if it is leaf node then go to parent node
+     * there will be a parent node define in tree
+     * caculate parent node and check sucessor
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public InsertInBst.Node sucessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node sucessorNode = null;
+        while (root != null) {
+            if (root.data == value) {
+                //root = root.right;
+                break;
+            }
+            if (root.data > value) {
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+        if(root.right!=null){
+            root= root.right;
+            while(root!=null){
+                sucessorNode = root;
+                root = root.left;
+            }
+        }else{
+            while(root!=null && root.parent !=null && root.parent.left!=root){
+                root=root.parent;
+            }
+            if(root!=null){
+                sucessorNode = root.parent;
+            }else{
+                sucessorNode = root;
+            }
+        }
+       return sucessorNode;
+        
+    }
+        /**
+     * logic for predecessor is same as define in above comments
+     * this approach check if it is leaf node then go to parent node
+     * there will be a parent node define in tree
+     * caculate parent node and check predecessor
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public static InsertInBst.Node predecessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node predecessorNode = null;
+        while (root != null) {
+            if (root.data == value) {
+                break;
+            }
+            if (root.data > value) {
+                root = root.left;
+            } else {
+                predecessorNode = root;
+                root = root.right;
+            }
+        }
+        if(root.left!=null){
+            root = root.left;
+            while (root != null) {
+                predecessorNode = root;
+                root = root.right;
+            }
+        }else{
+            while(root!=null && root.parent !=null && root.parent.right!=root){
+                root=root.parent;
+            }
+            if(root!=null){
+                predecessorNode = root.parent;
+            }else{
+                predecessorNode = root;
+            }
         }
         return predecessorNode;
     }

@@ -5,12 +5,14 @@ public class InsertInBst {
     static class Node {
         Node left;
         Node right;
+        Node parent;
         int data;
 
         Node(int num) {
             data = num;
             left = null;
             right = null;
+            parent = null;
         }
     }
 
@@ -26,6 +28,7 @@ public class InsertInBst {
                         ptr = ptr.left;
                     } else {
                         ptr.left = newNode;
+                        newNode.parent = ptr;
                         break;
                     }
                 } else {
@@ -33,6 +36,7 @@ public class InsertInBst {
                         ptr = ptr.right;
                     } else {
                         ptr.right = newNode;
+                        newNode.parent = ptr;
                         break;
                     }
                 }
