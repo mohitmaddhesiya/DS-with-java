@@ -71,18 +71,30 @@ public class BST {
         } else {
             System.out.println("         " + sucessorResult.data + " sucessor found of node without parent node " + num);
         }
+        InsertInBst.Node sucessorParentResult = pre.sucessorWithParentWay(root, num);
+        if (sucessorParentResult == null) {
+            System.out.println("         No sucessor found of node with parent node " + num);
+        } else {
+            System.out.println("         " + sucessorParentResult.data + " sucessor found of node with parent node " + num);
+        }
         System.out.println(" ---------  Print predecessor node  with itrative way of given node ------------   ");
         InsertInBst.Node predecessorResult = pre.predecessorItrativeWay(root, num);
         if (predecessorResult == null) {
-            System.out.println("         No predecessor found of node " + num);
+            System.out.println("         No predecessor found of node without parent node " + num);
         } else {
-            System.out.println("         " + predecessorResult.data + " predecessor found of node " + num);
+            System.out.println("         " + predecessorResult.data + " predecessor found of node without parent node " + num);
+        }
+        InsertInBst.Node predecessorParentResult = pre.predecessorWithParentWay(root, num);
+        if (predecessorParentResult == null) {
+            System.out.println("         No predecessor found of node with parent node " + num);
+        } else {
+            System.out.println("         " + predecessorParentResult.data + " predecessor found of node with parent node " + num);
         }
         System.out.println(" ");
     }
     public static void postorder(InsertInBst.Node root, int num) {
         System.out.println(" ");
-        System.out.println(" '''''''''' recursive preorder approach display ''''''''''' ");
+        System.out.println(" '''''''''' recursive postorder approach display ''''''''''' ");
         Postorder post = new Postorder();
         post.recursiveDisplay(root);
         System.out.println(" ");
@@ -112,7 +124,7 @@ public class BST {
 
     }
     public static void main(String[] args) {
-        int nodeValue = 80;
+        int nodeValue = 48;
         // create object of insert class
         InsertInBst bst = new InsertInBst();
         // call insert function
@@ -121,6 +133,7 @@ public class BST {
         inorder(bst.root, nodeValue);
         predorder(bst.root, nodeValue);
         postorder(bst.root, nodeValue);
+        // pass any node and display with parent travsal
         diplayOtherWay(bst.root.left.right.left.right.left);
         System.out.println(" ==========   End Display Technique ==============");
     }

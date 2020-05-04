@@ -38,7 +38,7 @@ public class Preorder {
         Output : 26
      * @param root
      * @param value
-     * @return
+     * @return node object
      */
     public InsertInBst.Node sucessorItrativeWay(InsertInBst.Node root, int value) {
         InsertInBst.Node sucessorNode = null;
@@ -53,7 +53,6 @@ public class Preorder {
                         sucessorNode=temp.right;
                     }else{
                         if(ptr!=null){
-                            System.out.println(" ptr found " +  ptr.data);
                             sucessorNode=ptr.right;
                         }
                     }
@@ -100,7 +99,7 @@ public class Preorder {
         Output : 15
      * @param root
      * @param value
-     * @return
+     * @return node object
      */
     public static InsertInBst.Node predecessorItrativeWay(InsertInBst.Node root, int value) {
         InsertInBst.Node predecessorNode = null;
@@ -139,6 +138,100 @@ public class Preorder {
                     }
                     predecessorNode =ptr;   
                 }
+            }
+        }
+        return predecessorNode;
+    }
+    /**
+     * 1) check if node found with left three thean return left node
+     * 2) if it does not have left tree then have right sub tree then return right node
+     * 3) if it is leaf node then go to parent and check parent sibling as left node or right node 
+     * this approach check if it is leaf node then go to parent node
+     * there will be a parent node define in tree
+     * caculate parent node and check sucessor
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public InsertInBst.Node sucessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node sucessorNode = null;
+        InsertInBst.Node temp = root;
+        while(temp!=null){
+            if(temp.data == value){
+                break;
+            }
+            if (temp.data > value) {
+                temp = temp.left;
+            } else {
+                temp = temp.right;
+            }
+        }
+        if(temp.left!=null){
+            sucessorNode =temp.left;
+        }else{
+            if(temp.right!=null){
+                sucessorNode =temp.right;
+            }else{
+                // found as leaf node check it parent
+                while(temp!=null){
+                    if(temp.parent.right!=temp && temp.parent.right!=null){
+                        temp=temp.parent;
+                        break;
+                    }
+                    if(temp.parent == root && temp.parent.right== temp){
+                        temp=null;
+                        break;
+                    }
+                    temp=temp.parent;
+                    
+                }
+                if(temp==null){
+                    sucessorNode=null;
+                }else{
+                    sucessorNode=temp.right;
+                }
+            }
+        }
+        return sucessorNode;
+    }
+    /**
+     * 1) check if node found with left three thean return left node
+     * 2) if it does not have left tree then have right sub tree then return right node
+     * 3) if it is leaf node then go to parent and check parent sibling as left node or right node 
+     * this approach check if it is leaf node then go to parent node
+     * there will be a parent node define in tree
+     * caculate parent node and check sucessor
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public static InsertInBst.Node predecessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node predecessorNode = null;
+        InsertInBst.Node temp = root;
+        while(temp!=null){
+            if(temp.data == value){
+                break;
+            }
+            if (temp.data > value) {
+                temp = temp.left;
+            } else {
+                temp = temp.right;
+            }
+        }
+        if(temp.parent!=null){
+            if(temp.parent.left==temp || (temp.parent.left==null)){
+                predecessorNode = temp.parent;
+            }else{
+                temp = temp.parent.left;
+                InsertInBst.Node ptr= null;
+                while(temp!=null){
+                    ptr=temp;
+                    temp = temp.right;
+                    if(temp==null && ptr.left!=null){
+                        temp = ptr.left;
+                    }
+                }
+                predecessorNode=ptr;
             }
         }
         return predecessorNode;
