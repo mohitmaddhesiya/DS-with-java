@@ -152,4 +152,96 @@ public class Postorder {
        
         return predecessorNode;
     }
+
+    /**
+     * 1) check if given node is in right node then parent is successor
+     * 2) If given node is left child of parent and right child of parent is not NULL,
+     *           then postorder successor is the leftmost node of parent’s right subtree
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public InsertInBst.Node sucessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node sucessorNode = null;
+        InsertInBst.Node temp = root;
+        while(temp!=null){
+            if(temp.data == value){
+                break;
+            }
+            if (temp.data > value) {
+                temp = temp.left;
+            } else {
+                temp = temp.right;
+            }
+        }
+        if(temp.parent!=null){
+            if(temp.parent.right == temp){
+                sucessorNode = temp.parent;
+            }else{
+                InsertInBst.Node ptr = temp.parent;
+                temp= temp.parent.right;
+                while(temp!=null){
+                    ptr=temp;
+                    temp= temp.left;
+                    if(temp==null && ptr.right!=null){
+                        temp=ptr.right;
+                    }
+                }
+                sucessorNode = ptr;
+            }
+        }
+        return sucessorNode;
+    }
+    /**
+     * 1) Check if given node have right tree the print righ node as predecessor
+     * 2) Check if given node does not have right subtree but have left sub tree then
+     *    print left node as predecessor 
+     * 3) Check if node as leaf node then check it is right or left node of parent
+     *      a) If given node is parent of right then print parent of left node as predecessor, 
+     *          If no left pasent then move to parent node  util unless node as left child not found
+     *          and if left child found then check left child which is not part of parent which we coming as parent 
+     *      b) if it is parent of left then  parent node  util unless node as left child not found
+     *          and left child which we coming as parent 
+     * @param root
+     * @param value
+     * @return node object
+     */
+    public static InsertInBst.Node predecessorWithParentWay(InsertInBst.Node root, int value) {
+        InsertInBst.Node predecessorNode = null;
+        InsertInBst.Node temp = root;
+        while(temp!=null){
+            if(temp.data == value){
+                break;
+            }
+            if (temp.data > value) {
+                temp = temp.left;
+            } else {
+                temp = temp.right;
+            }
+        }
+        if(temp.right!=null){
+            predecessorNode = temp.right;
+        }else{
+            if(temp.left!=null){
+                predecessorNode = temp.left;
+            }else{
+                InsertInBst.Node ptr = temp.parent;
+                while(temp!=null){
+                    ptr=temp;
+                    if(temp.parent.left!=temp && temp.parent.left!=null){
+                        ptr=temp.parent.left;
+                        break;
+                    }
+                    temp=temp.parent;
+                    if(temp.parent==null && temp.left==ptr){
+                        temp=null;
+                    }
+                }
+                if(temp!=null){
+                    predecessorNode = ptr;
+                }
+            }
+        }
+        return predecessorNode;
+    }
 }

@@ -101,17 +101,28 @@ public class BST {
         System.out.println(" ---------  Print sucessor node with itrative way of given node ------------   ");
         InsertInBst.Node sucessorResult = post.sucessorItrativeWay(root, num);
         if (sucessorResult == null) {
-            System.out.println("         No sucessor found of node without parent node " + num);
+            System.out.println("         No sucessor found of node without parent node without parent node " + num);
         } else {
-            System.out.println("         " + sucessorResult.data + " sucessor found of node  without parent node " + num);
+            System.out.println("         " + sucessorResult.data + " sucessor found of node  without parent node without parent node " + num);
         }
-
+        InsertInBst.Node sucessorParentResult = post.sucessorWithParentWay(root, num);
+        if (sucessorParentResult == null) {
+            System.out.println("         No sucessor found of node without parent node with parent node " + num);
+        } else {
+            System.out.println("         " + sucessorParentResult.data + " sucessor found of node  without parent node with parent node " + num);
+        }
         System.out.println(" ---------  Print predecessor node  with itrative way of given node ------------   ");
         InsertInBst.Node predecessorResult = post.predecessorItrativeWay(root, num);
         if (predecessorResult == null) {
-            System.out.println("         No predecessor found of node " + num);
+            System.out.println("         No predecessor found of node with parent node " + num);
         } else {
-            System.out.println("         " + predecessorResult.data + " predecessor found of node " + num);
+            System.out.println("         " + predecessorResult.data + " predecessor found of node with parent node " + num);
+        }
+        InsertInBst.Node predecessorParentResult = post.predecessorWithParentWay(root, num);
+        if (predecessorParentResult == null) {
+            System.out.println("         No predecessor found of node without parent node " + num);
+        } else {
+            System.out.println("         " + predecessorParentResult.data + " predecessor found of node without parent node " + num);
         }
         System.out.println(" ");
     }
@@ -124,7 +135,7 @@ public class BST {
 
     }
     public static void main(String[] args) {
-        int nodeValue = 48;
+        int nodeValue = 82;
         // create object of insert class
         InsertInBst bst = new InsertInBst();
         // call insert function
