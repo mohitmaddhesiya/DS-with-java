@@ -59,13 +59,15 @@ public class Preorder {
                 }
                 break;
             }
-            if (temp.data > value) {
-                if(temp.right!=null){
-                    ptr=temp;
+            if(temp!=null){
+                if (temp.data > value) {
+                    if(temp.right!=null){
+                        ptr=temp;
+                    }
+                    temp = temp.left;
+                } else {
+                    temp = temp.right;
                 }
-                temp = temp.left;
-            } else {
-                temp = temp.right;
             }
         }
         return sucessorNode;
@@ -166,29 +168,31 @@ public class Preorder {
                 temp = temp.right;
             }
         }
-        if(temp.left!=null){
-            sucessorNode =temp.left;
-        }else{
-            if(temp.right!=null){
-                sucessorNode =temp.right;
+        if(temp!=null){
+            if(temp.left!=null){
+                sucessorNode =temp.left;
             }else{
-                // found as leaf node check it parent
-                while(temp!=null){
-                    if(temp.parent.right!=temp && temp.parent.right!=null){
-                        temp=temp.parent;
-                        break;
-                    }
-                    if(temp.parent == root && temp.parent.right== temp){
-                        temp=null;
-                        break;
-                    }
-                    temp=temp.parent;
-                    
-                }
-                if(temp==null){
-                    sucessorNode=null;
+                if(temp.right!=null){
+                    sucessorNode =temp.right;
                 }else{
-                    sucessorNode=temp.right;
+                    // found as leaf node check it parent
+                    while(temp!=null){
+                        if(temp.parent.right!=temp && temp.parent.right!=null){
+                            temp=temp.parent;
+                            break;
+                        }
+                        if(temp.parent == root && temp.parent.right== temp){
+                            temp=null;
+                            break;
+                        }
+                        temp=temp.parent;
+                        
+                    }
+                    if(temp==null){
+                        sucessorNode=null;
+                    }else{
+                        sucessorNode=temp.right;
+                    }
                 }
             }
         }
@@ -218,22 +222,25 @@ public class Preorder {
                 temp = temp.right;
             }
         }
-        if(temp.parent!=null){
-            if(temp.parent.left==temp || (temp.parent.left==null)){
-                predecessorNode = temp.parent;
-            }else{
-                temp = temp.parent.left;
-                InsertInBst.Node ptr= null;
-                while(temp!=null){
-                    ptr=temp;
-                    temp = temp.right;
-                    if(temp==null && ptr.left!=null){
-                        temp = ptr.left;
+        if(temp!=null){
+            if(temp.parent!=null){
+                if(temp.parent.left==temp || (temp.parent.left==null)){
+                    predecessorNode = temp.parent;
+                }else{
+                    temp = temp.parent.left;
+                    InsertInBst.Node ptr= null;
+                    while(temp!=null){
+                        ptr=temp;
+                        temp = temp.right;
+                        if(temp==null && ptr.left!=null){
+                            temp = ptr.left;
+                        }
                     }
+                    predecessorNode=ptr;
                 }
-                predecessorNode=ptr;
             }
         }
+        
         return predecessorNode;
     }
 }
