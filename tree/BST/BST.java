@@ -140,9 +140,11 @@ public class BST {
         DeleteInBst de = new DeleteInBst();
         de.removeNodeWithParent(root, nodeValue);
         System.out.println(" ");
+        de.removeNodeWithOutParent(root, nodeValue);
+        System.out.println(" ");
     }
     public static void main(String[] args) {
-        int nodeValue = 42;
+        int nodeValue = 80;
         // create object of insert class
         InsertInBst bst = new InsertInBst();
         // call insert function
@@ -155,8 +157,8 @@ public class BST {
         diplayOtherWay(bst.root.left.right.left.right.left);
         System.out.println(" ==========   End Display Technique ==============");
         System.out.println(" ==========   Delete Technique ==================");
-        deleteNode(bst.root, nodeValue);
-        predorder(bst.root, nodeValue);
+       // deleteNode(bst.root, nodeValue);
+       // predorder(bst.root, nodeValue);
         System.out.println(" ==========   End Delete Technique ==============");
     }
 }
