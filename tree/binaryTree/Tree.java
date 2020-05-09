@@ -100,6 +100,16 @@ public class Tree {
     Display ds = new Display();
     ds.sprialOrder(bt.root);
     System.out.println(" ");
+    int data=190;
+    System.out.println("       =====  Print ancestor path of given node with hasmap approach ===== ");
+    ds.printAncetorPathWithMap(bt.root, data);
+    System.out.println(" ");
+    System.out.println("       =====  Print ancestor path of given node with recursive approach ===== ");
+    ds.recursivePrint(bt.root, data);
+    System.out.println(" ");
+    System.out.println("       =====  Print ancestor path of given node with stack itartive geeks appproach ===== ");
+    ds.printAncetorPath(bt.root, data);
+    System.out.println(" ");
   } 
   static void identical(BinaryTree bt1, BinaryTree bt2){
     Identical i=new Identical();
@@ -122,7 +132,6 @@ public class Tree {
     EveryTwoLevelsChangeDirection e= new EveryTwoLevelsChangeDirection();
     System.out.println("       ===== Level order traversal with direction change after every two levels ===== ");
     e.modifiedLevelOrder(bt.root);
-
   }
   public static void main(String args[]) {
 
