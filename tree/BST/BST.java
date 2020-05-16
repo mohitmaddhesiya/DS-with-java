@@ -143,6 +143,19 @@ public class BST {
         de.removeNodeWithOutParent(root, nodeValue);
         System.out.println(" ");
     }
+    public static void  printVertialOrder(InsertInBst.Node root){
+        VerticalOrderTraversal v= new VerticalOrderTraversal();
+        System.out.println(" '''''''''' Recursive approach with hash map   ''''''''''' ");
+        v.recursive(root);
+        System.out.println(" ");
+        System.out.println(" '''''''''' Without hashmap approah order but vertial order will not matter   ''''''''''' ");
+        v.withHasMap(root);
+        System.out.println(" ");
+        System.out.println(" '''''''''' itrative order with haspmap and levelorder but vertial order will matter   ''''''''''' ");
+        v.levelOrderWithHaspMap(root);
+        System.out.println(" ");
+     
+    }
     public static void main(String[] args) {
         int nodeValue = 80;
         // create object of insert class
@@ -160,5 +173,8 @@ public class BST {
        // deleteNode(bst.root, nodeValue);
        // predorder(bst.root, nodeValue);
         System.out.println(" ==========   End Delete Technique ==============");
+        System.out.println(" ==========   Display Vetrial Order Technique ==================");
+        printVertialOrder(bst.root);
+        System.out.println(" ==========   End  Display Vetrial Order  Technique ==============");
     }
 }
