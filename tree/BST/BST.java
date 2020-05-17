@@ -154,7 +154,21 @@ public class BST {
         System.out.println(" '''''''''' itrative order with haspmap and levelorder but vertial order will matter   ''''''''''' ");
         v.levelOrderWithHaspMap(root);
         System.out.println(" ");
-     
+    }
+    public static void  printBoundryOrder(InsertInBst.Node root){
+        BoundarOrderTraversal b= new BoundarOrderTraversal();
+        System.out.println(" '''''''''' Recursive approach Anti-clock wise boundry display ''''''''''' ");
+        b.recursive(root);
+        System.out.println(" ");
+        System.out.println(" '''''''''' Itrative approach Anti-clock wise boundry display ''''''''''' ");
+        b.itrativeWayAntiClockWise(root);
+        System.out.println(" ");
+        System.out.println(" '''''''''' Recursive approach clock wise boundry display ''''''''''' ");
+        b.recursiveClockWise(root);
+        System.out.println(" ");
+        System.out.println(" '''''''''' itrative approach clock wise boundry display ''''''''''' ");
+        b.itrativeWayClockWise(root);
+        System.out.println(" ");
     }
     public static void main(String[] args) {
         int nodeValue = 80;
@@ -173,8 +187,12 @@ public class BST {
        // deleteNode(bst.root, nodeValue);
        // predorder(bst.root, nodeValue);
         System.out.println(" ==========   End Delete Technique ==============");
-        System.out.println(" ==========   Display Vetrial Order Technique ==================");
+        System.out.println(" ==========   Display Vetrial Order travsersal ==================");
         printVertialOrder(bst.root);
-        System.out.println(" ==========   End  Display Vetrial Order  Technique ==============");
+        System.out.println(" ==========   End  Display Vetrial Order travsersal ==============");
+        System.out.println("");
+        System.out.println(" ==========   Display Boundry Order travsersal ==================");
+        printBoundryOrder(bst.root);
+        System.out.println(" ==========   End  Display Boundry Order travsersal ==============");
     }
 }
