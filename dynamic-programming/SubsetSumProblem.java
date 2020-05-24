@@ -14,8 +14,15 @@
  */
 import java.util.ArrayList;
 public class SubsetSumProblem {
+    static int total_nodes;
     static boolean memoizationMatrix[][] = new boolean[1000][1000];
-
+    static void initZero(){
+        for(int i=0;i<1000;i++){
+            for(int j=0;j<1000;j++){
+                memoizationMatrix[i][j]=false;
+            }
+        }
+    }
     // recursive approach only check if subset is present or not
     static boolean recursive(int arr[], int n, int sum) {
         if (sum == 0) {
@@ -42,17 +49,22 @@ public class SubsetSumProblem {
         if (n == 0 && sum != 0) {
             return false;
         }
-        if (sum >= arr[n - 1]) {
-            boolean item1 = memoization(arr, n - 1, sum);
-            boolean item2 = memoization(arr, n - 1, sum - arr[n - 1]);
-            boolean value = item1 || item2;
-            memoizationMatrix[n][sum] = value;
-            return value;
-        } else {
-            boolean value = memoization(arr, n - 1, sum);
-            memoizationMatrix[n][sum] = value;
-            return value;
+        if(!memoizationMatrix[n][sum]){
+            if (sum >= arr[n - 1]) {
+                boolean item1 = memoization(arr, n - 1, sum);
+                boolean item2 = memoization(arr, n - 1, sum - arr[n - 1]);
+                boolean value = item1 || item2;
+                memoizationMatrix[n][sum] = value;
+                return value;
+            } else {
+                boolean value = memoization(arr, n - 1, sum);
+                memoizationMatrix[n][sum] = value;
+                return value;
+            }
+        }else{
+            return memoizationMatrix[n][sum];
         }
+        
     }
 
     // tabular DP approach to only check if subset is present or not
@@ -86,6 +98,40 @@ public class SubsetSumProblem {
 
         return tabularArray[n][sum];
     }
+    // backtracking approach
+    static void backtraking(int s[], int t[], int s_size, int t_size,  int sum, int ite, int target_sum){
+        //System.out.println(" ite = " + ite); 
+        total_nodes++; 
+        if( target_sum == sum ) 
+        { 
+            // We found subset 
+            printSubset(t, t_size); 
+            // Exclude previously added item and consider next candidate 
+            //backtraking(s, t, s_size, t_size-1, sum - s[ite], ite + 1, target_sum); 
+            return; 
+        } 
+        else
+        { 
+            // generate nodes along the breadth 
+            for( int i = ite; i < s_size; i++ ) 
+            { 
+                t[t_size] = s[i]; 
+                // consider next level node (along depth) 
+                backtraking(s, t, s_size, t_size + 1, sum + s[i], i + 1, target_sum); 
+            } 
+        } 
+    }
+
+    static void printSubset(int A[], int size) 
+    { 
+        for(int i = 0; i < size; i++) 
+        { 
+            System.out.println(" " + A[i]); 
+        } 
+    
+        System.out.println(""); 
+    } 
+
     static void display(ArrayList<Integer> v) 
     { 
        System.out.println(v); 
@@ -95,15 +141,13 @@ public class SubsetSumProblem {
     // help of dp[][]. Vector p[] stores current subset. 
     static void printSubsetsRec(int arr[], int i, int sum, ArrayList<Integer> p, boolean dp[][]) 
     { 
-      // System.out.println("\t" + i + " sum "+sum + " arr " + arr[i-1] );
-
         // If we reached end and sum is non-zero. We print 
         // p[] only if arr[0] is equal to sun OR dp[0][sum] 
         // is true. 
         if (i == 0 && sum != 0 && dp[0][sum]) 
         { 
-            //p.add(arr[i-1]); 
-           // display1(p); 
+            p.add(arr[i-1]); 
+            display(p); 
             p.clear(); 
             return; 
         } 
@@ -111,45 +155,29 @@ public class SubsetSumProblem {
         // If sum becomes 0 
         if (i == 0 && sum == 0) 
         { 
-            display1(p); 
+            display(p); 
             p.clear(); 
             return; 
         } 
        
         // If given sum can be achieved after ignoring 
         // current element. 
-        //System.out.println("i = " + i  + " sum = " + sum + " dp[i-1][sum] = " + dp[i-1][sum]);
         if (dp[i-1][sum]) 
         { 
-           // System.out.println("\t if we are not incuding sum =  " + sum + " i = " + i + " arr = " +arr[i-1] + " dp[i-1][sum] = " +  dp[i-1][sum]);
-
             // Create a new vector to store path 
-           // System.out.println("\t p " + p);
             ArrayList<Integer> b = new ArrayList<>(); 
             b.addAll(p); 
-           // System.out.println("\t b " + b);
-
             printSubsetsRec(arr, i-1, sum, b, dp); 
         } 
        
         // If given sum can be achieved after considering 
         // current element. 
-           // 
-
-           // System.out.println("\t dp[i-1][sum-arr[i]] = " + (sum-arr[i-1]));
-
-            if (sum >= arr[i-1] && dp[i-1][sum-arr[i-1]]) 
-            { 
-               //System.out.println("\t if we are incuding sum =  " + sum + " i = " + i + " arr = " +arr[i-1] + " dp[i-1][sum-arr[i-1]] = " +  dp[i-1][sum-arr[i-1]]);
-                p.add(arr[i-1]); 
-                printSubsetsRec(arr, i-1, sum-arr[i-1], p,dp); 
-            } 
-       
+        if (sum >= arr[i-1] && dp[i-1][sum-arr[i-1]]) 
+        { 
+            p.add(arr[i-1]); 
+            printSubsetsRec(arr, i-1, sum-arr[i-1], p,dp); 
+        } 
     }
-    static void display1(ArrayList<Integer> v) 
-    { 
-       System.out.println(v); 
-    } 
        
     private static void prinMatrix(int n, int m, boolean tabularArray[][], int arr[]){
         System.out.println();
@@ -169,6 +197,7 @@ public class SubsetSumProblem {
         }
         System.out.println();
     }
+
     private static void printValues(int n, int m, boolean tabularArray[][], int arr[]){
             int i=n;
             int j=m;
@@ -241,7 +270,7 @@ public class SubsetSumProblem {
 
     }
     public static void main(String args[]) {
-        int[] arr = {2, 3, 5, 5, 8, 10};
+        int[] arr = {2, 3, 5, 8, 10};
         int pr[] = new int[100];
         int n = arr.length;
         int sum = 10 ;
@@ -249,10 +278,17 @@ public class SubsetSumProblem {
         System.out.print(" \t " +arr[i]);
         System.out.println("");
         System.out.println("recursive approach " + recursive(arr, n, sum));
+          // before call meoiztion approach we have to set zero in matrix array
+        // that the reason we are calling initZero function
+        initZero();
         System.out.println("memoization DP approach " + memoization(arr, n, sum));
         System.out.println("tabular DP approach " + tabular(arr, n, sum));
         System.out.println("##### Print All Sub set sum #########");
         printAllSubsetSum(arr, n-1, sum, 0, pr);
         System.out.println("#### End Print All Sub set sum ######");
+        System.out.println("##### Print All Sub set sum with Back tracking#########");
+        backtraking(arr, new int[1000], n, 0, 0, 0, sum); 
+        System.out.println("##### End Print All Sub set sum with Back tracking #########");
+
     }
 }
