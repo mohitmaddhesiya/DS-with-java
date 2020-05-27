@@ -14,7 +14,6 @@
  */
 import java.util.ArrayList;
 public class SubsetSumProblem {
-    static int total_nodes;
     static boolean memoizationMatrix[][] = new boolean[1000][1000];
     static void initZero(){
         for(int i=0;i<1000;i++){
@@ -100,14 +99,16 @@ public class SubsetSumProblem {
     }
     // backtracking approach
     static void backtraking(int s[], int t[], int s_size, int t_size,  int sum, int ite, int target_sum){
+        System.out.println( " ite " + ite + " s_size =  "+ s_size + " sum = " + sum + " t_size "+ t_size);
+
         //System.out.println(" ite = " + ite); 
-        total_nodes++; 
         if( target_sum == sum ) 
         { 
             // We found subset 
             printSubset(t, t_size); 
             // Exclude previously added item and consider next candidate 
-            //backtraking(s, t, s_size, t_size-1, sum - s[ite], ite + 1, target_sum); 
+            //if(ite<s_size)
+            // backtraking(s, t, s_size, t_size+1, sum + s[ite], ite + 1, target_sum); 
             return; 
         } 
         else
@@ -116,6 +117,7 @@ public class SubsetSumProblem {
             for( int i = ite; i < s_size; i++ ) 
             { 
                 t[t_size] = s[i]; 
+                
                 // consider next level node (along depth) 
                 backtraking(s, t, s_size, t_size + 1, sum + s[i], i + 1, target_sum); 
             } 
@@ -270,7 +272,7 @@ public class SubsetSumProblem {
 
     }
     public static void main(String args[]) {
-        int[] arr = {2, 3, 5, 8, 10};
+        int[] arr = {2, 3, 5, 8};
         int pr[] = new int[100];
         int n = arr.length;
         int sum = 10 ;

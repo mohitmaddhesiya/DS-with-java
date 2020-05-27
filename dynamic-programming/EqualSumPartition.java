@@ -63,11 +63,13 @@ public class EqualSumPartition {
 
     static boolean recursivePrint(int arr[], int n, int sum, int dis[], int pos, int arrLen) {
         if (sum == 0) {
-            System.out.println("---------first partition ------");
+            System.out.println("\t---------first partition ------");
+            System.out.print("\t");
             for (int i = 0; i < pos; i++)
                 System.out.print(" " + dis[i]);
             System.out.println();
-            System.out.println("---------second partition ------");
+            System.out.println("\t---------second partition ------");
+            System.out.print("\t");
             for (int i = 0; i < arrLen; i++) {
                 int j = 0;
                 for (j = 0; j < pos; j++) {
@@ -110,7 +112,6 @@ public class EqualSumPartition {
     static void partionArray(int arr[], int first_sum, int second_sum,int n, int dis[], int pos, int arrLen){
         if(n==0){
             if(first_sum == second_sum){
-                System.out.println(" found equal sum " +  " first_sum = " + first_sum + " second_sum = "+ second_sum);
                 System.out.println(" ");
                 for (int i = 0; i < pos; i++)
                     System.out.print(" " + dis[i]);
@@ -133,8 +134,18 @@ public class EqualSumPartition {
         for(int i=0;i<n;i++)
         System.out.print(" \t " +arr[i]);
         System.out.println("");
+        System.out.println("---------  recursive approach , same as subset sum problem ----------------");
         System.out.println(" find sub array in boolean format =  " + recursiveApproach(arr));
+        System.out.println("----------  End recursive approach , same as subset sum problem ----------------");
+
+        System.out.println("");
+        System.out.println("---------  recursive approach , print all soultion insert into an array ----------------");
         printEqualArrayWithRecursive(arr);
+        System.out.println("---------  End recursive approach , print all soultion insert into an array ----------------");
+        System.out.println("");
+        System.out.println("---------  recursive approach , With same divide by two array ----------------");
         partionArray(arr, 0, 0, n, new int[1000], 0, n);
+        System.out.println("---------  End recursive approach , With same divide by two array ----------------");
+        System.out.println("");
     }
 }
