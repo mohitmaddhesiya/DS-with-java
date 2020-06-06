@@ -99,7 +99,7 @@ public class SubsetSumProblem {
     }
     // backtracking approach
     static void backtraking(int s[], int t[], int s_size, int t_size,  int sum, int ite, int target_sum){
-        System.out.println( " ite " + ite + " s_size =  "+ s_size + " sum = " + sum + " t_size "+ t_size);
+       // System.out.println( " ite " + ite + " s_size =  "+ s_size + " sum = " + sum + " t_size "+ t_size);
 
         //System.out.println(" ite = " + ite); 
         if( target_sum == sum ) 
