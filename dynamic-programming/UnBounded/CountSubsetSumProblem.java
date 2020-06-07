@@ -193,7 +193,27 @@ public class CountSubsetSumProblem {
         printSubsetsOfTabular(arr, n-1, sum, p,tabularArray);
         return tabularArray[n][sum];
     }
-
+    static int subSetBacktracting(int arr[], int n, int sum, int ite, int t[], int t_size){
+        if(sum==0){
+           for(int j=0;j<t_size;j++)
+                System.out.print("  "+ t[j]);
+                System.out.println(" ");
+           return 1;
+        }
+        if(sum<0){
+            return 0;
+        }
+        int min= 0;
+        for(int i=ite;i<n;i++){
+            if(sum>=arr[i]){
+                t[t_size] = arr[i];
+                t_size=t_size+1;
+                min= min + subSetBacktracting(arr, n, sum - arr[i], i, t, t_size);  
+                t_size--;              
+            }
+        }
+        return min;
+    }
     public static void main(String[] args) {
         int[] arr = {6,2,4};
         int n = arr.length;
@@ -208,5 +228,7 @@ public class CountSubsetSumProblem {
 
        // prinMatrix(n+1, sum+1, memoizationMatrix);
         System.out.println("tabular approach count number of sum  = " + tabular(arr, n, sum));
+        System.out.println("usign back tracking count number of sum = " + subSetBacktracting(arr, n, sum, 0, new int[1000], 0));
+
     }
 }

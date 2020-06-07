@@ -144,11 +144,29 @@ public class SubSetSumProblem {
         }
         return tabularArray[n][sum];
     }
+    /**
+                            
+    */
+    static boolean subSetBacktracting(int arr[], int n, int sum){
+        if(sum==0){
+            return true;
+        }
+        if(sum<0){
+            return false;
+        }
+        boolean result= false;
+        for(int i=0;i<n;i++){
+            if(sum>=arr[i]){
+                result= result || subSetBacktracting(arr, n, sum - arr[i]);                
+            }
+        }
+        return result;
+    }
 
     public static void main(String args[]) {
-        int[] arr = { 6, 2, 4 };
+        int[] arr = { 3,7,9};
         int n = arr.length;
-        int sum = 12;
+        int sum = 21 ;
         for (int i = 0; i < n; i++)
             System.out.print(" \t " + arr[i]);
         System.out.println("");
@@ -157,5 +175,6 @@ public class SubSetSumProblem {
         System.out.println("tabularWithPrevious approach " + tabularWithPrevious(arr, n, sum));
         System.out.println("tabular approach " + tabular(arr, n, sum));
         System.out.println("tabular  second approach approach " + tabular2(arr, n, sum));
+        System.out.println("Using back tracking approach  " + subSetBacktracting(arr, n, sum));
     }
 }
