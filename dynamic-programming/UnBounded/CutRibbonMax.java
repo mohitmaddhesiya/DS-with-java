@@ -187,9 +187,6 @@ public class CutRibbonMax {
         prinMatrix(n, coin, memoizationMatrix);
         System.out.println(" tabular approach " + tabular(arr, coin, n));
         System.out.println(" tabular with variable approach " + tabularWithVariable(a, b, c , coin));
-        /*System.out.println(" another tabluar reduce space complexity arroach  approach " + tabularReduceSpaceComplexicty(arr, coin,n));
-        System.out.println(" another recursive approach  count min number of coin " + minCoins(arr, n,coin));
-        System.out.println(" another tabular  approach  count min number of coin " + anotherTabularWay(arr, n,coin));*/
     }
     private static void prinMatrix(int n, int m, int tabularArray[][]) {
         System.out.println();
