@@ -66,7 +66,7 @@ public class PrintLCS {
                     if (str1[i - 1] == str2[j - 1]) {
                         tabularArray[i][j] = 1 + tabularArray[i - 1][j - 1];
                     } else {
-                        tabularArray[i][j] = max(tabularArray[i - 1][j - 1], tabularArray[i][j - 1]);
+                        tabularArray[i][j] = max(tabularArray[i - 1][j], tabularArray[i][j-1]);
                     }
                 }
             }
@@ -80,13 +80,11 @@ public class PrintLCS {
                 System.out.print("|\t" + tabularArray[i][j]);
             }
             System.out.println("  ");
-        }
-        System.out.println(" tabularArray " + tabularArray[n][m]);
-        
+        }        
         Set<String> s = printAllLCS(str1, str2, n, m, tabularArray);
-        System.out.println(" printing ALl Sub sequnce" );
+        System.out.println(" printing ALl Sub sequnce \t");
         for (String str : s) 
-          System.out.println(str);
+          System.out.println('\t' +str);
           System.out.println(" End printing ALl Sub sequnce");
 
         System.out.println();
@@ -111,7 +109,6 @@ public class PrintLCS {
             // recurse for str1[0..m-2] and str2[0..n-2]
             // in the matrix
             Set<String> tmp = printAllLCS(str1, str2, m - 1, n - 1, L);
-            System.out.println(" tmp "  + tmp);
 
             // append current character to all possible LCS
             // of subString str1[0..m-2] and Y[0..n-2].
