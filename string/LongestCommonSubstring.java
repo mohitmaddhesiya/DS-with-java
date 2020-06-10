@@ -12,22 +12,24 @@
         Output : 6
         The longest common substring is “abcdez” and is of length 6.
  */
+import java.util.*;
 public class LongestCommonSubstring {
     static int memoizationMatrix[][] = new int[1000][1000];
     //A simple solution is to one by one consider all substrings of first string and for every substring check if it is a substring in second string. Keep track of the maximum length substring
-    static int bruteForce(char str1[], String str2, int n, int m, int count, int ite, String subString){
-        for(int i=ite;i<n;i++){
-            subString = subString + str1[i];
-            if(searchSubString(str2, subString)){
-                if(count<subString.length()){
-                    count=subString.length();
+    static int bruteForce(String str1, String str2, int n, int m){
+        int count=0;
+        SubStringPrint subStrObj= new SubStringPrint();
+        Set<String> subString=   subStrObj.bruteForce(str1);
+        for (String str : subString){
+            if(searchSubString(str2, str)){
+                if(count<str.length()){
+                    count=str.length();
                 }
             }
-            bruteForce(str1,str2, n, m, count,i+1, subString);
         }
         return count;
     }
-    
+
     // string matchin function
     static boolean searchSubString(String txt, String pat) 
     { 
@@ -54,13 +56,12 @@ public class LongestCommonSubstring {
     // recursive solution 
     static int recursive(char str1[], char str2[], int n, int m, int count) {
         if(n==0 || m==0)
-            return 0;
+            return count;
 
         if(str1[n-1]==str2[m-1]){
-            count = recursive(str1, str2, n-1, m-1, count)+1;
-            return count;
+           return recursive(str1, str2, n-1, m-1, count+1);
         }else{
-            return max(count,max(recursive(str1, str2, n-1, m, 0), recursive(str1, str2, n, m-1, 0)));
+            return  max(count,max(recursive(str1, str2, n-1, m, 0), recursive(str1, str2, n, m-1, 0)));
         }
     }
     
@@ -70,12 +71,13 @@ public class LongestCommonSubstring {
 
     static int memoization(char str1[], char str2[], int n, int m, int count) {
         if(n==0 || m==0)
-            return 0;
+            return count;
         if(memoizationMatrix[n][m]==0){
             if(str1[n-1]==str2[m-1]){
-                return memoizationMatrix[n][m]=count+memoization(str1, str2, n-1, m-1, count)+1;
+                return memoization(str1, str2, n-1, m-1, count+1);
             }else{
-                return memoizationMatrix[n][m]=max(count,max(memoization(str1, str2, n-1, m, 0), memoization(str1, str2, n, m-1, 0)));
+                memoizationMatrix[n][m]=max(count,max(memoization(str1, str2, n-1, m, 0), memoization(str1, str2, n, m-1, 0)));
+                return memoizationMatrix[n][m];
             }
         }else{
             return memoizationMatrix[n][m];
@@ -121,8 +123,8 @@ public class LongestCommonSubstring {
         System.out.println();
     }
     public static void main(String args[]) {
-        String s="GeeksQuiz";
-        String s1="GeeksforGeeks";
+        String s="GeeksforGeeks";
+        String s1="GeeksQuiz";
         char str1[] = s.toCharArray();;
         char str2[] = s1.toCharArray();
         int n =str1.length;
@@ -130,18 +132,18 @@ public class LongestCommonSubstring {
         System.out.println(s);
         System.out.println(s1);
         System.out.println("\n -------  recursive approach ---------------");
-        System.out.println("Result of recursion" + recursive(str1, str2, n, m, 0));
+        System.out.println("Result of recursion = " + recursive(str1, str2, n, m, 0));
         System.out.println(" ------- end recursive approach ---------------");
         System.out.println("\n");
         System.out.println("\n -------  memoization approach ---------------");
-        System.out.println("result of memoization" +  memoization(str1, str2, n, m, 0));
+        System.out.println("result of memoization = " +  memoization(str1, str2, n, m, 0));
         prinMatrix(n,m,memoizationMatrix);
         System.out.println(" ------- end memoization approach ---------------");
         System.out.println("\n -------  tabular approach ---------------");
-        System.out.println(tabular(str1, str2, n, m));
+        System.out.println("tabular of memoization = " + tabular(str1, str2, n, m));
         System.out.println(" ------- end tabular approach ---------------");
         System.out.println("\n -------  Brute Force approach ---------------");
-        System.out.println( " find result from brute force result " +bruteForce(str1, s1, n, m, 0, 0, ""));
+        System.out.println( " find result from brute force result  = " +bruteForce(s, s1, n, m));
         System.out.println(" ------- end Brute Force approach ---------------");
     }
     

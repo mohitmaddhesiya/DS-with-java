@@ -22,11 +22,13 @@ public class CombinationsOfString {
     }
     public static void main(String[] args) {
         Character[] ch=new Character[4];
-        ch[0]= 'w';
-        ch[1]= 'x';
-        ch[2]= 'y';
-        ch[3]= 'z';
+        ch[0]= 'A';
+        ch[1]= 'B';
+        ch[2]= 'C';
+        ch[3]= 'D';
+        ch[3]= 'E';
+        ch[3]= 'F';
         int n= ch.length;
-        backtraking(ch,n,"",0, new Character[4], 0);
+        backtraking(ch,n,"",0, new Character[7], 0);
     }
 }
