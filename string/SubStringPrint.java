@@ -16,6 +16,7 @@
  */
 import java.util.*;
 public class SubStringPrint {
+    
     static Set<String> bruteForce(String str){
         Set<String> subString = new HashSet<>();
         int n=str.length();
@@ -28,6 +29,39 @@ public class SubStringPrint {
         }
         return subString;
     }
+
+    static void bitwiseDisplay(String str){
+        int n=str.length();
+        int i=1;
+        int j=i;
+        int count=0;
+        int pos=0;
+        String s="";
+        int bitCount = -1;
+        while(i<Math.pow(2,n)){
+            j=i;
+            pos=0;
+            s="";
+            bitCount=-1;
+            while(j>0){
+                count = j & 1;
+                if(bitCount>=0 && count ==0){
+                    bitCount=-1;
+                    break;
+                }
+                if(count ==1){
+                  s=s+str.charAt(pos);
+                  bitCount++;
+                }   
+                pos++;
+                j=j>>1;
+            }
+            if(bitCount !=-1){
+                System.out.println(s);
+            }
+            i++;
+        }
+    }
     public static void main(String args[]) {
         String s="abcd";
         System.out.println("\n -------  brute force approach ---------------");
@@ -35,5 +69,9 @@ public class SubStringPrint {
         for (String str : subString)
                 System.out.println(str);
         System.out.println(" ------- end  brute forceapproach ---------------");
+        System.out.println("\n -------  Bitwise display force approach ---------------");
+        bitwiseDisplay(s);
+        System.out.println("\n -------  End Bitwise display approach ---------------");
+
     }
 }

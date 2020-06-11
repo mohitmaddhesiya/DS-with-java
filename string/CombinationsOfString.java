@@ -7,7 +7,8 @@
  *      
  */
 public class CombinationsOfString {
-    static void backtraking(Character arr[], int n, String str, int ite, Character temp[], int temp_var){
+
+    static void backtraking(String str, int n, int ite, Character temp[], int temp_var){
         if(temp.length>0){
             for(int i=0;i<temp_var;i++){
                 System.out.print(temp[i]);
@@ -15,20 +16,38 @@ public class CombinationsOfString {
             System.out.println();
         }
         for(int i=ite;i<n;i++){
-            str =str+arr[i];
-            temp[temp_var] = arr[i];
-            backtraking(arr, n , str, i+1, temp, temp_var+1);
+            temp[temp_var] = str.charAt(i);
+            backtraking(str, n, i+1, temp, temp_var+1);
         }
     }
+    // bit wise operator
+    static void bitwiseDisplay(String str){
+        int n=str.length();
+        int i=1;
+        int j=i;
+        int count=0;
+        while(i<Math.pow(2,n)){
+            j=i;
+            while(j>0){
+                count = j & 1;
+                if(count ==1){
+                  s=s+str.charAt(pos);
+                }   
+                j=j>>1;
+            }
+            System.out.println(s);
+            i++;
+        }
+    }
+    // optimise way of bitwise time complexcity of this power of 2,length of string
     public static void main(String[] args) {
-        Character[] ch=new Character[4];
-        ch[0]= 'A';
-        ch[1]= 'B';
-        ch[2]= 'C';
-        ch[3]= 'D';
-        ch[3]= 'E';
-        ch[3]= 'F';
-        int n= ch.length;
-        backtraking(ch,n,"",0, new Character[7], 0);
+        String str="abcd";
+        int n= str.length();
+        System.out.println("\n -------  brute Backtraking approach ---------------");
+        backtraking(str,n,0, new Character[n], 0);
+        System.out.println("\n -------  End Backtraking approach ---------------");
+        System.out.println("\n -------  Bit wise approach ---------------");
+        bitwiseDisplay(str);
+        System.out.println("\n -------  End Bit wise approach ---------------");
     }
 }
