@@ -1,10 +1,10 @@
 /**
  *  Given two strings str1 and str2, find the shortest string that has both str1 and str2 as subsequences.
  *  Input:   str1 = "geek",  str2 = "eke"
-    Output: "geeke"
+    Output:  5   ("geeke")
 
     Input:   str1 = "AGGTAB",  str2 = "GXTXAYB"
-    Output:  "AGXGTXAYB"
+    Output: 9  ("AGXGTXAYB")
  */
 
  /**
@@ -14,9 +14,6 @@
                  totalLength: 7 (geekeke)
                  result = 7-2 
                  result = 5 (geeke)
-                 
-    1) Find Longest Common Subsequence (lcs) of two given strings. 
-       For example, lcs of “geek” and “eke” is “ek”.
 
   */
   /**
