@@ -26,13 +26,17 @@ public class CombinationsOfString {
         int i=1;
         int j=i;
         int count=0;
+        int pos=1;
+        String s="";
         while(i<Math.pow(2,n)){
             j=i;
+            s="";
+            pos=0;
             while(j>0){
                 count = j & 1;
-                if(count ==1){
-                  s=s+str.charAt(pos);
-                }   
+                if(count==1)
+                    s=s+str.charAt(pos);
+                pos++;
                 j=j>>1;
             }
             System.out.println(s);
@@ -41,7 +45,7 @@ public class CombinationsOfString {
     }
     // optimise way of bitwise time complexcity of this power of 2,length of string
     public static void main(String[] args) {
-        String str="abcd";
+        String str="abc";
         int n= str.length();
         System.out.println("\n -------  brute Backtraking approach ---------------");
         backtraking(str,n,0, new Character[n], 0);
